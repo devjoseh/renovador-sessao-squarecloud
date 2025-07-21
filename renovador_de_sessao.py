@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 
 def registrar_log(mensagem, nivel=logging.INFO):
-    """Registra uma mensagem no log e também a imprime na tela."""
+    # Registra uma mensagem no log e também a imprime na tela.
     print(mensagem)
     if nivel == logging.INFO:
         logging.info(mensagem)
@@ -27,7 +27,7 @@ def registrar_log(mensagem, nivel=logging.INFO):
 import json
 
 def carregar_config():
-    """Carrega o valor do cookie do arquivo config.json."""
+    # Carrega o valor do cookie do arquivo config.json.
     try:
         with open("config.json", 'r') as f:
             config = json.load(f)
@@ -40,10 +40,7 @@ def carregar_config():
         return None
 
 def renovar_sessao():
-    """
-    Lê o cookie de sessão do config.json e faz uma requisição para a URL do dashboard
-    para manter a sessão ativa.
-    """
+    # Lê o cookie de sessão do config.json e faz uma requisição para a URL do dashboard para manter a sessão ativa.
     try:
         registrar_log("Iniciando o processo de renovação de sessão (método manual)...")
 
@@ -73,8 +70,6 @@ def renovar_sessao():
 
         # Verifica a resposta
         if response.status_code == 200:
-            # Um status 200 geralmente significa sucesso.
-            # Vamos verificar se a resposta não é uma página de login.
             if "login" in response.url.lower() or "auth" in response.url.lower():
                  registrar_log(
                     "A requisição foi redirecionada para uma página de login. "
